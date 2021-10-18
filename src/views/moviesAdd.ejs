@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie add</title>
+    <link rel='stylesheet' href='/css/style.css' />
+</head>
+
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+      </figure>
+    <h1 class="moviesAddTitulo"></h1>
+    <br>
+    <section id="formulario" >
+        <article >
+            <form id = "addMovie-form" action="/movies/create" method="POST">
+                <label for="title">Titulo </label>
+                <p><input type="text" name="title" id="title" class = "input <%= locals.errors && locals.errors.title ? 'is-invalid' : null %>"></p>
+                <div>
+                    <span id="error-title" class="text-error"><%= locals.errors && locals.errors.title ? errors.title.msg : null %></span>
+                </div>
+                
+                <label for="rating">Calificación </label>
+                <p><input type="number" name="rating" id="rating"  class = "input <%= locals.errors && locals.errors.rating ? 'is-invalid' : null %>"></p>
+                <div>
+                    <span id="error-rating" class="text-error"><%= locals.errors && locals.errors.rating ? errors.rating.msg : null %></span>
+                </div>
+                
+                <label for="awards">Premios </label>
+                <p><input type="number" name="awards" id="awards" class = "input <%= locals.errors && locals.errors.awards ? 'is-invalid' : null %>"></p>
+                <div>
+                    <span id="error-awards" class="text-error"><%= locals.errors && locals.errors.awards ? errors.awards.msg : null %></span>
+                </div>
+                
+                <label for="release_date">Fecha de creación </label>
+                <p><input type="date" name="release_date" id="release_date" class = "input <%= locals.errors && locals.errors.release_date ? 'is-invalid' : null %>" ></p>
+                <div>
+                    <span id="error-release_date" class="text-error"><%= locals.errors && locals.errors.release_date ? errors.release_date.msg : null %></span>
+                </div>
+                
+                <label for="length">Duración </label>
+                <p><input type="number" name="length" id="length" class = "input <%= locals.errors && locals.errors.length ? 'is-invalid' : null %>" ></p>
+                <div>
+                    <span id="error-length" class="text-error"><%= locals.errors && locals.errors.length ? errors.length.msg : null %></span>
+                </div>
+                <label for="genreID">Género </label>
+                <p>
+                    <select name="genre_id" id="genre_id" class = "input <%= locals.errors && locals.errors.genre_id ? 'is-invalid' : null %>" >
+                        <option value="" disabled selected>- Seleccione el género - </option>
+                        <% allGenres.forEach(genre => { %>
+                        <option value="<%= genre.id %>"><%= genre.name %></option>
+                        <% }); %>
+                    </select>
+                    <span id="error-genre_id" class="text-error"><%= locals.errors && locals.errors.genre_id ? errors.genre_id.msg : null %></span>
+                </p>
+                <br>
+                <span id="error-campos-vacios" class="text-error"><%= locals.errors && locals.errors.title ? errors.title.msg : null %></span>
+                <span id = "msg-addMovie"><%= locals.errors && locals.errors.add ? errors.add.msg : null %></span>
+                <p> <button class="botonAgregar" type="submit">Agregar</button>
+                
+                <a  class="botonVolver" href="/movies">Listado de Películas</a></p>
+            </form>
+        </article>
+    </section>
+    <script src = "/js/moviesAddValidation.js"></script>
+
+</body>
+</html>
