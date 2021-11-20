@@ -100,6 +100,9 @@ figure{
 .is-invalid{
   border: solid 1px orangered;
 }
+.is-valid{
+  border: solid 1px green;
+}
 
 .text-error{
   color:orangered;
